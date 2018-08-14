@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Word Guess Game!!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./assets/js/game.js"></script>
+</head>
+
+<body onload="startGame()">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-10 text-center">
+                
+            </div>
+            <div class="col-12 col-md-2 text-center">
+                LIVES: <p id="liveTag">5</p>
+            </div>
+            <div class="col-12 text-center mainboard">
+                <p class="hiddenword" id="word"></p>
+            </div>
+            <div class="col-12 text-center lives">
+                <img src="./assets/images/skull.png" style="display: none;" alt="here" id="live1" class="liveimage"/>
+                <img src="./assets/images/skull.png" style="display: none;" alt="here" id="live2" class="liveimage"/>
+                <img src="./assets/images/skull.png" style="display: none;" alt="here" id="live3" class="liveimage"/>
+                <img src="./assets/images/skull.png" style="display: none;" alt="here" id="live4" class="liveimage"/>
+                <img src="./assets/images/skull.png" style="display: none;" alt="here" id="live5" class="liveimage"/>
+            </div>
+            <div class="col-8">
+                <div class="span8 content selletter align-middle">
+                    
+                    <div class="card" style="width: 100%;">
+                        <div class="card-body">
+                            <h5 class="card-title">SELECTED LETTERS</h5>
+                            <p class="card-text" id="letters"></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="span4 content score">
+                        test test test 
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="row">
+            <div class="col-12 imgselected">
+                <img src="./assets/images/A.png" style="display: none;" id="imageletter"/>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
