@@ -6,19 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet"> 
     <title>Word Guess Game!!</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./assets/js/game.js"></script>
+    
 </head>
 
 <body onload="startGame()">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-10 text-center">
-                
+            <div class="col-12 maintitle">
+                90's CARTOON GAME!
             </div>
-            <div class="col-12 col-md-2 text-center">
-                LIVES: <p id="liveTag">5</p>
+            <div class="col-12 col-md-9">
+            </div>
+            <div class="col-12 col-md-3 text-center livesleft " id="liveTagDiv">
+                LIVES LEFT: <span id="liveTag">5</span>
             </div>
             <div class="col-12 text-center mainboard">
                 <p class="hiddenword" id="word"></p>
@@ -35,7 +39,7 @@
                     
                     <div class="card" style="width: 100%;">
                         <div class="card-body">
-                            <h5 class="card-title">SELECTED LETTERS</h5>
+                            <h5 class="card-title letterslist">LETTERS SELECTED</h5>
                             <p class="card-text" id="letters"></p>
                         </div>
                     </div>
@@ -43,8 +47,9 @@
                 </div>
             </div>
             <div class="col-4">
-                <div class="span4 content score">
-                        test test test 
+                <div class="span4 content text-center">
+                    <h5 class="card-title letterslist">Created by</h5>
+                    <p>Luis E. Diaz</p>
                 </div>
             </div>
             
@@ -55,9 +60,30 @@
                 <img src="./assets/images/A.png" style="display: none;" id="imageletter"/>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12 imgselected">
+                <a href="index.html">
+                    <img src="./assets/images/game-over.jpg" style="display: none;" id="gameover" class="gamover"/>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 imgselected">
+                <a href="index.html">
+                    <img src="./assets/images/you-win.jpg" style="display: none;" alt="here" id="win" class="win"/>
+                </a>
+            </div>
+        </div>
     </div>
 
-
-
-</body>
+    <audio id="wrong-answer">
+        <source src="./assets/audio/Wrong-answer-sound-effect.mp3" type="audio/mpeg"></source>
+    </audio>
+    <audio id="answer">
+        <source src="./assets/audio/Ta Da.mp3" type="audio/mpeg"></source>
+    </audio>
+    <audio id="lose">
+        <source src="./assets/audio/You-lose-sound-effect.mp3" type="audio/mpeg"></source>
+    </audio>
+    </body>
 </html>

@@ -1,11 +1,11 @@
 var word ="";
 var hiddenword="";
-
+var keyList=[];
 
 function startGame(){
     var wordsList = ["Pinky and the Brain","Rugrats","The Powerpuff Girls","Dexter's Laboratory","SpongeBob SquarePants","Ed, Edd n Eddy","X-Men","The Simpsons","Futurama","Animaniacs"];
-    //word = wordsList[Math.floor(Math.random() * wordsList.length)].toUpperCase();
-    word = "SpongeBob SquarePants".toUpperCase();
+    word = wordsList[Math.floor(Math.random() * wordsList.length)].toUpperCase();
+    //word = "SpongeBob SquarePants".toUpperCase();
     console.log(word);
 
 
@@ -16,6 +16,9 @@ function startGame(){
             hiddenword += "_ ";
         }else if(element == " "){
             hiddenword += "&nbsp ";
+            if((hiddenword.length/17)>1 && (hiddenword.length/17)<2){
+                hiddenword += "<br />";
+            }
         }else{
             hiddenword += element + " ";
         }
@@ -28,12 +31,15 @@ function startGame(){
 
 }
 
+
+
 document.onkeyup = function(event) {
     var userText ="";
     userText  = event.key;
     userText = userText.trim().toUpperCase();
     var livesTag = document.getElementById("liveTag");
     var lives = parseInt(livesTag.innerText);
+    console.dir(livesTag);
     console.log(userText);
     var keycode = event.keyCode ? event.keyCode : event.charCode;
     var image = document.getElementById("imageletter");
@@ -42,7 +48,7 @@ document.onkeyup = function(event) {
         image.style="display:inline;"
         setTimeout(function(){
             image.style="display:none;";
-        },800);
+        },500);
     }
     
     var lettersTag = document.getElementById("letters");
@@ -57,11 +63,9 @@ document.onkeyup = function(event) {
     if( arrayLength== 0){
         if(keycode>=65 && keycode<=90){
             values = userText;
+            keyList.push(userText);
             valid=true;
         }else{
-            skull.style="display:inline;"
-            lives--;
-            livesTag.textContent = lives;
             valid=false;
         }
     }else if (keycode>=65 && keycode<=90) {
@@ -70,38 +74,40 @@ document.onkeyup = function(event) {
             var valList = values.split(",");
             valList.sort();
             values = valList;
+            keyList.push(userText);
             valid=true;
         }else{
-            skull.style="display:inline;"
-            lives--;
-            livesTag.textContent = lives;
             valid=false;
         }
     }else{
-        skull.style="display:inline;"
-        lives--;
-        livesTag.textContent = lives;
         valid=false;
     }
     lettersTag.textContent = values;
 
     if(valid){
         hiddenword ="";
+        var count =0;
         for (var i = 0;  i < word.length; i++){
             var element =word[i]; 
             if(element==userText){
                 console.log("HERE  " + i);
                 hiddenword += userText + " ";
                 console.log(hiddenword);
+                count++;
             }else{
                 if (/^[a-zA-Z]+$/.test(element)) {
-                    if(){
-                        
+                    if(keyList.indexOf(element)>-1){
+                        hiddenword += element + " ";
+                    }else{
+                        hiddenword += "_ ";
                     }
-                    hiddenword += "_ ";
                 }else if(element == " "){
                     hiddenword += "&nbsp ";
+                    if((hiddenword.length/17)>1 && (hiddenword.length/17)<2){
+                        hiddenword += "<br />";
+                    }
                 }else{
+                    count++;
                     hiddenword += element + " ";
                 }
             }
@@ -110,21 +116,30 @@ document.onkeyup = function(event) {
         var winword = document.getElementById("word");
         winword.innerHTML = hiddenword; 
     }
+    if(count>0){
+        var audio = document.getElementById("answer");
+        audio.play();
+    }
+    if(count==0){
+        skull.style="display:inline;"
+        lives--;
+        livesTag.textContent = lives;
+        
+        $("#liveTagDiv").fadeOut("fast");
+        $("#liveTagDiv").fadeIn("fast");
+        var audio = document.getElementById("wrong-answer");
+        audio.play();
+    }
     
-
-
-
-    // var stringsearch = "o"
-    //     ,str = "this is foo bar";
-
-    // for (var i = 0;  i < str.length; i++){
-    //     console.log("HERE 1 ");
-    //     if(str[i]==stringsearch){
-    //         console.log("HERE  " + i);
-    //         str = str.substr(0, i) + 'x' + str.substr(i + 1);
-    //         console.log(str);
-    //     }
-    // }     
-    console.log(("this is foo bar".match(/o/g)||[]).length);
+    if(hiddenword.indexOf("_") <0){
+        var win = document.getElementById("win");
+        win.style="display:inline;"
+    }
+    if(lives<1){
+        var gameover = document.getElementById("gameover");
+        gameover.style="display:inline;"
+        var audio = document.getElementById("lose");
+        audio.play();
+    }
     console.log(word);  
 }
