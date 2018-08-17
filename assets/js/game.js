@@ -5,9 +5,6 @@ var keyList=[];
 function startGame(){
     var wordsList = ["Pinky and the Brain","Rugrats","The Powerpuff Girls","Dexter's Laboratory","SpongeBob SquarePants","Ed, Edd n Eddy","X-Men","The Simpsons","Futurama","Animaniacs"];
     word = wordsList[Math.floor(Math.random() * wordsList.length)].toUpperCase();
-    //word = "SpongeBob SquarePants".toUpperCase();
-    console.log(word);
-
 
     for (let i = 0; i < word.length; i++) {
         const element = word[i];
@@ -22,13 +19,10 @@ function startGame(){
         }else{
             hiddenword += element + " ";
         }
-        console.log(hiddenword);
     }
     
     var winword = document.getElementById("word");
     winword.innerHTML = hiddenword;
-
-
 }
 
 
@@ -129,6 +123,7 @@ document.onkeyup = function(event) {
         
         if(hiddenword.indexOf("_") <0){
             var win = document.getElementById("win");
+            win.src="./assets/images/"+(word)+".jpg";
             win.style="display:inline;"
         }
         if(lives<1){
@@ -140,6 +135,4 @@ document.onkeyup = function(event) {
             liveTagDiv.style="color:red;";
         }
     }
-    
-    console.log(word);  
 }
