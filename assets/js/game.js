@@ -125,6 +125,8 @@ document.onkeyup = function(event) {
             var win = document.getElementById("win");
             win.src="./assets/images/"+(word)+".jpg";
             win.style="display:inline;"
+            var audio = document.getElementById("win");
+            audio.play();
         }
         if(lives<1){
             var gameover = document.getElementById("gameover");
